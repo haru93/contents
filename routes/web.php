@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::group(['prefix' => 'review'], function () {
+    Route::get('index' , 'ReviewController@index')->name('review.index');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
