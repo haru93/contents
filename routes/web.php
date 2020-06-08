@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::group(['prefix' => 'review'], function () {
     Route::get('index' , 'ReviewController@index')->name('review.index');
+    Route::get('create', 'ReviewController@create')->name('review.create');
 });
+
 
 Route::get('/home', 'HomeController@index')->name('home');

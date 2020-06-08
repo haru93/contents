@@ -10,4 +10,9 @@ class ReviewController extends Controller
     {
         return view('review.index');
     }
+
+    public function create()
+    {
+        return view('review.create');
+    }
 }
