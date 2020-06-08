@@ -2,9 +2,20 @@
 
 @section('content')
 <h1 class='pagetitle container'>レビュー投稿ページ</h1>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="row justify-content-center container">
     <div class="col-md-10">
-      <form method='POST' action="" enctype="multipart/form-data">
+      <form method='POST' action="{{ route('review.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-body">
