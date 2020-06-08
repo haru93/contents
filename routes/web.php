@@ -13,10 +13,10 @@
 
 Auth::routes();
 
-Route::group(['prefix' => 'review'], function () {
-    Route::get('index' , 'ReviewController@index')->name('review.index');
+Route::get('/' , 'ReviewController@index')->name('review.index');
+
+Route::group(['prefix' => 'review', 'middleware' => 'auth'], function () {
     Route::get('create', 'ReviewController@create')->name('review.create');
 });
-
 
 Route::get('/home', 'HomeController@index')->name('home');
