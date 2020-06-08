@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,11 +19,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+
     @yield('css')
+
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img class='navbar-logo' src="{{ asset('images/logo.png') }}">
@@ -77,11 +83,11 @@
         <main class="main py-4">
             @yield('content')
         </main>
+
         <!-- p20は便利クラス -->
         <footer class='footer p20'>
             <small class='copyright'>Laravel Contents Reviews 2020 copyright</small>
         </footer>
-
     </div>
 </body>
 </html>
