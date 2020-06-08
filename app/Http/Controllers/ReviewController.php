@@ -9,7 +9,10 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        return view('review.index');
+        // statusが1(アクティブ)のレコードのみ表示する条件指定
+        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
+        // dd($reviews);
+        return view('review.index', compact('reviews'));
     }
 
     public function create()
@@ -38,6 +41,6 @@ class ReviewController extends Controller
 
         Review::insert($data);
 
-        return redirect('/');
+        return redirect('/')->with('flash_message', '投稿が完了しました');
     }
 }

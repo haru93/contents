@@ -84,10 +84,16 @@
         </nav>
 
         <main class="main py-4">
+            <!-- フラッシュメッセージ -->
+            @if (session('flash_message'))
+                <div class="flash_message bg-success text-center py-3 my-0 mb30">
+                    {{ session('flash_message') }}
+                </div>
+            @endif
             @yield('content')
         </main>
 
-        <!-- p20は便利クラス -->
+        <!-- p20はユーティリティークラス -->
         <footer class='footer p20'>
             <small class='copyright'>Laravel Contents Reviews 2020 copyright</small>
         </footer>
