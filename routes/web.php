@@ -15,6 +15,10 @@ Auth::routes();
 
 Route::get('/' , 'ReviewController@index')->name('review.index');
 
+Route::group(['prefix' => 'review'], function () {
+    Route::get('show/{id}', 'ReviewController@show')->name('review.show');
+});
+
 Route::group(['prefix' => 'review', 'middleware' => 'auth'], function () {
     Route::get('create', 'ReviewController@create')->name('review.create');
     Route::post('store', 'ReviewController@store')->name('review.store');

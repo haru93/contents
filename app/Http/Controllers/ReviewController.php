@@ -43,4 +43,11 @@ class ReviewController extends Controller
 
         return redirect('/')->with('flash_message', '投稿が完了しました');
     }
+
+    public function show($id)
+    {
+        $review = Review::where('id', $id)->where('status', 1)->first();
+
+        return view('review.show', compact('review'));
+    }
 }
