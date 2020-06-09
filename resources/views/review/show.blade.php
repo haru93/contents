@@ -10,9 +10,9 @@
         <div class="card">
             <div class="card-body d-flex">
                 <section class='review-main'>
-                  <h2 class='h2'>タイトル</h2>
-                  <p class='h2 mb20'>{{ $review->title }}</p>
-                  <h2 class='h2'>レビュー本文</h2>
+                  <h2 class='h4'>タイトル</h2>
+                  <p class='mb20'>{{ $review->title }}</p>
+                  <h2 class='h4'>レビュー本文</h2>
                   <p>{{ $review->body }}</p>
                 </section>  
                 <aside class='review-image'>
@@ -23,14 +23,18 @@
                   @endif
                 </aside>
             </div>
-            <form method="GET" action="{{ route('review.edit', ['id' => $review->id]) }}">
-                @csrf
-                <input type='submit' class='btn btn-primary' value='編集'>
-            </form>
-            <form method="POST" action="{{ route('review.delete', ['id' => $review->id ])}}" id="delete_{{ $review->id}}" >
-                @csrf
-                <a href="#" class="btn btn-danger" data-id="{{ $review->id }}" onclick="deletePost(this);" >削除</a>
-            </form>
+            <div class="card-body d-flex">
+                <div class="btn-group">
+                    <form method="GET" action="{{ route('review.edit', ['id' => $review->id]) }}">
+                        @csrf
+                        <input type='submit' class='btn btn-primary' value='編集'>
+                    </form>
+                    <form method="POST" action="{{ route('review.delete', ['id' => $review->id ])}}" id="delete_{{ $review->id}}" >
+                        @csrf
+                        <a href="#" class="btn btn-danger" data-id="{{ $review->id }}" onclick="deletePost(this);" >削除</a>
+                    </form>
+                </div>
+            </div>
             <a href="{{ route('review.index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
         </div>
 </div>

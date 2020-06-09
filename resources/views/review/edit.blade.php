@@ -20,7 +20,6 @@
 <div class="container">
     <div class="col-md-10">
         <form method='POST' action="{{ route('review.update', ['id' => $review->id ]) }}" enctype="multipart/form-data">
-        {{-- <form method='POST' action="" enctype="multipart/form-data"> --}}
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -31,7 +30,6 @@
                 <div class="form-group">
                 <label>レビュー本文</label>
                     <textarea class='description form-control' name='body'>{{ $review->body }}</textarea>
-                    {{-- <textarea class='description form-control' name='body' value="{{ $review->body }}"></textarea> --}}
                 </div>
                 <aside class='review-image'>
                     @if(!empty($review->image))
