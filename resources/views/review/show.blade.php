@@ -22,12 +22,31 @@
                       <img class='content-image' src="{{ asset('images/dummy.png') }}">
                   @endif
                 </aside>
-                <form method="GET" action="{{ route('review.edit', ['id' => $review->id]) }}">
-                    @csrf
-                    <input type='submit' class='btn btn-primary' value='編集する'>
-                </form>
             </div>
+            <form method="GET" action="{{ route('review.edit', ['id' => $review->id]) }}">
+                @csrf
+                <input type='submit' class='btn btn-primary' value='編集'>
+            </form>
+            <form method="POST" action="{{ route('review.delete', ['id' => $review->id ])}}" id="delete_{{ $review->id}}" >
+                @csrf
+                <a href="#" class="btn btn-danger" data-id="{{ $review->id }}" onclick="deletePost(this);" >削除</a>
+            </form>
             <a href="{{ route('review.index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
         </div>
 </div>
+
+<script>
+    /************************************
+    削除ボタンを押してすぐにレコードが削除
+    されるのも問題なので、一旦javascriptで
+    確認メッセージを流します。
+    *************************************/
+    function deletePost(e) {
+        'use strict';
+        if (confirm('本当に削除していいですか?')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
+
 @endsection

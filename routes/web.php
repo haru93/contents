@@ -21,6 +21,7 @@ Route::group(['prefix' => 'review', 'middleware' => 'auth'], function () {
     Route::get('show/{id}', 'ReviewController@show')->name('review.show');
     Route::get('edit/{id}', 'ReviewController@edit')->name('review.edit');
     Route::post('update/{id}', 'ReviewController@update')->name('review.update');
+    Route::post('delete/{id}', 'ReviewController@delete')->name('review.delete');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

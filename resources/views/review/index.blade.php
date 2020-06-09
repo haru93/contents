@@ -18,7 +18,7 @@
                   @endif
                   <h3 class='h3 content-title'>{{ $review->title }}</h3>
                   <p class='description'>{{ $review->body }}</p>
-                  <a href="{{ route('review.show', ['id' => $review->id ]) }}" class='btn btn-secondary detail-btn'>詳細をみる</a>
+                  <a href="{{ route('review.show', ['id' => $review->id ]) }}" class='btn btn-secondary detail-btn'>詳細</a>
               </div>
           </div>
       </div>
