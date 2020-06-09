@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-body">
               <div class="form-group">
-                <label>コンテンツのタイトル</label>
+                <label>タイトル</label>
                 <input type='text' class='form-control' name='title' placeholder='タイトルを入力'>
               </div>
               <div class="form-group">
@@ -28,10 +28,10 @@
                 <textarea class='description form-control' name='body' placeholder='本文を入力'></textarea>
               </div>
               <div class="form-group">
-                <label for="file1">本のサムネイル</label>
+                <label for="file1">画像</label>
                 <input type="file" id="file1" name='image' class="form-control-file">
               </div>
-              <input type='submit' class='btn btn-primary' value='レビューを登録'>
+              <input type='submit' class='btn btn-primary' value='登録'>
             </div>
         </div>
       </form>
