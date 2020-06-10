@@ -8,22 +8,20 @@
 <div class="container">
     <h1 class='pagetitle'>レビュー詳細ページ</h1>
         <div class="card">
-            <div class='row'>
-                <div class="card-body d-flex">
-                    <section class='review-main'>
-                        <h2 class='h4'>タイトル</h2>
-                        <p class='mb20'>{{ $review->title }}</p>
-                        <h2 class='h4'>レビュー本文</h2>
-                        <p>{{ $review->body }}</p>
-                    </section>  
-                    <aside class='review-image'>
-                    @if(!empty($review->image))
-                        <img class='content-image' src="{{ asset('storage/images/'.$review->image) }}">
-                    @else
-                        <img class='content-image' src="{{ asset('images/dummy.png') }}">
-                    @endif
-                    </aside>
-                </div>
+            <div class="card-body d-flex">
+                <section class='review-main'>
+                  <h2 class='h4'>タイトル</h2>
+                  <p class='mb20'>{{ $review->title }}</p>
+                  <h2 class='h4'>レビュー本文</h2>
+                  <p>{{ $review->body }}</p>
+                </section>  
+                <aside class='review-image'>
+                  @if(!empty($review->image))
+                      <img class='content-image' src="{{ asset('storage/images/'.$review->image) }}">
+                  @else
+                      <img class='content-image' src="{{ asset('images/dummy.png') }}">
+                  @endif
+                </aside>
             </div>
             <div class="d-flex justify-content-around">
                 <a href="{{ route('review.index') }}" class='btn btn-info btn-style mb20'>一覧へ戻る</a>
