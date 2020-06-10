@@ -4,14 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Review;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // statusが1(アクティブ)のレコードのみ表示する条件指定
-        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
-        // dd($reviews);
+        $query = DB::table('reviews');
+        
+        // 検索フォーム
+        $search = $request->input('search');
+        //もしキーワードがあったら
+        if($search !== null){
+            //全角スペースを半角に
+            $search_split = mb_convert_kana($search,'s');
+            //空白で区切る
+            $search_split2 = preg_split('/[\s]+/', $search_split,-1,PREG_SPLIT_NO_EMPTY);
+            //単語をループで回す
+            // foreach($search_split2 as $value) {
+            //     $query->where('title','like','%'.$value.'%');
+            // }
+            foreach($search_split2 as $value) {
+                $query->where('title','like','%'.$value.'%')
+                      ->orwhere('body','like','%'.$value.'%');
+            }
+        };
+        
+        $query->orderBy('created_at', 'desc');
+        $reviews = $query->paginate(6);
+
         return view('review.index', compact('reviews'));
     }
 
