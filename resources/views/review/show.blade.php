@@ -8,34 +8,34 @@
 <div class="container">
     <h1 class='pagetitle'>レビュー詳細ページ</h1>
         <div class="card">
-            <div class="card-body d-flex">
-                <section class='review-main'>
-                  <h2 class='h4'>タイトル</h2>
-                  <p class='mb20'>{{ $review->title }}</p>
-                  <h2 class='h4'>レビュー本文</h2>
-                  <p>{{ $review->body }}</p>
-                </section>  
-                <aside class='review-image'>
-                  @if(!empty($review->image))
-                      <img class='content-image' src="{{ asset('storage/images/'.$review->image) }}">
-                  @else
-                      <img class='content-image' src="{{ asset('images/dummy.png') }}">
-                  @endif
-                </aside>
-            </div>
-            <div class="card-body d-flex">
-                <div class="btn-group">
-                    <form method="GET" action="{{ route('review.edit', ['id' => $review->id]) }}">
-                        @csrf
-                        <input type='submit' class='btn btn-primary' value='編集'>
-                    </form>
-                    <form method="POST" action="{{ route('review.delete', ['id' => $review->id ])}}" id="delete_{{ $review->id}}" >
-                        @csrf
-                        <a href="#" class="btn btn-danger" data-id="{{ $review->id }}" onclick="deletePost(this);" >削除</a>
-                    </form>
+            <div class='row'>
+                <div class="card-body d-flex">
+                    <section class='review-main'>
+                        <h2 class='h4'>タイトル</h2>
+                        <p class='mb20'>{{ $review->title }}</p>
+                        <h2 class='h4'>レビュー本文</h2>
+                        <p>{{ $review->body }}</p>
+                    </section>  
+                    <aside class='review-image'>
+                    @if(!empty($review->image))
+                        <img class='content-image' src="{{ asset('storage/images/'.$review->image) }}">
+                    @else
+                        <img class='content-image' src="{{ asset('images/dummy.png') }}">
+                    @endif
+                    </aside>
                 </div>
             </div>
-            <a href="{{ route('review.index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
+            <div class="d-flex justify-content-around">
+                <a href="{{ route('review.index') }}" class='btn btn-info btn-style mb20'>一覧へ戻る</a>
+                <form method="GET" action="{{ route('review.edit', ['id' => $review->id]) }}">
+                    @csrf
+                    <input type='submit' class='btn btn-success btn-style mb20' value='編集する'>
+                </form>
+                <form method="POST" action="{{ route('review.delete', ['id' => $review->id ])}}" id="delete_{{ $review->id}}" >
+                    @csrf
+                    <a href="#" class="btn btn-danger btn-style mb20" data-id="{{ $review->id }}" onclick="deletePost(this);" >削除する</a>
+                </form>
+            </div>
         </div>
 </div>
 
