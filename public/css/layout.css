@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #222831;
+  background-color: gray;
   color: #fff;
 }
 .navbar-logo {
@@ -10,7 +10,7 @@
   color: #fff;
 }
 .main {
-  background-color: #393e46;
+  background-color: lightgray;
   min-height: 85vh;
   padding: 30px 5%;
 }
@@ -19,8 +19,9 @@
   margin-bottom: 20px;
 }
 .footer {
-  background-color: #222831;
+  background-color: gray;
   text-align: center;
+  color: white;
 }
 .copyright {
   color: #fff;
