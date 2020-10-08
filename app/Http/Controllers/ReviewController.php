@@ -62,15 +62,6 @@ class ReviewController extends Controller
 
         $review->fill($data)->save();
 
-        // if ($request->hasFile('image')) {
-        //     $request->file('image')->store('/public/images');
-        //     $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $request->file('image')->hashName()];
-        // } else {
-        //     $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
-        // }
-
-        // Review::insert($data);
-
         return redirect('/')->with('flash_message', '投稿が完了しました');
     }
 
@@ -94,24 +85,23 @@ class ReviewController extends Controller
     public function update(Request $request, $id)
     {
         $post = $request->all();
-        // dd($post);
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
             'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $review = Review::find($id);
+            
         if ($request->hasFile('image')) {
-        // 送信されたファイルを操作する
-            $request->file('image')->store('/public/images');
-            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $request->file('image')->hashName()];
-        // dd($data);
+            $uploadImg = $review->image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('/', $uploadImg, 'public');
+            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => Storage::disk('s3')->url($path)];
         } else {
             $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
         }
-        
-        Review::where('id', $id)->update($data);
-        // Review::insert($data);
+
+        $review->fill($data)->save();
 
         return redirect('/')->with('flash_message', '編集が完了しました');
     }
