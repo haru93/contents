@@ -81,6 +81,16 @@
                                 </div>
                             </li>
                         @endguest
+                        @guest
+                            <li class="nav-item">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <input type="hidden" id="email" name="email" value="user@user.com">
+                                    <input type="hidden" id="password" name="password" value="password">
+                                    <button type="submit" class="btn btn-primary ml-3 mr-3">かんたんログイン</button>
+                                </form>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>

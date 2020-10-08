@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 class ReviewController extends Controller
 {
@@ -49,14 +50,26 @@ class ReviewController extends Controller
             'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $review = new Review();
+            
         if ($request->hasFile('image')) {
-            $request->file('image')->store('/public/images');
-            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $request->file('image')->hashName()];
+            $uploadImg = $review->image = $request->file('image');
+            $path = Storage::disk('s3')->putFile('/', $uploadImg, 'public');
+            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => Storage::disk('s3')->url($path)];
         } else {
             $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
         }
 
-        Review::insert($data);
+        $review->fill($data)->save();
+
+        // if ($request->hasFile('image')) {
+        //     $request->file('image')->store('/public/images');
+        //     $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $request->file('image')->hashName()];
+        // } else {
+        //     $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
+        // }
+
+        // Review::insert($data);
 
         return redirect('/')->with('flash_message', '投稿が完了しました');
     }

@@ -23,7 +23,7 @@
             <div class="card mb50">
                 <div class="card-body">
                     @if(!empty($review->image))
-                      <div class='image-wrapper'><img class='content-image' src="{{ asset('storage/images/'.$review->image) }}"></div>
+                      <div class='image-wrapper'><img class='content-image' src="{{ asset($review->image) }}"></div>
                     @else
                       <div class='image-wrapper'><img class='content-image' src="{{ asset('images/dummy.png') }}"></div>
                     @endif
