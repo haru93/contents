@@ -48,9 +48,6 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a href="{{ route('review.index') }}" class='nav-link'>HOME</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('review.create') }}" class='nav-link'>レビューを書く</a>
                         </li>
                         @guest
